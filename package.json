@@ -9,6 +9,7 @@
   "author": "suzuki3jp",
   "license": "MIT",
   "devDependencies": {
+    "@types/node": "^18.11.18",
     "@typescript-eslint/eslint-plugin": "^5.44.0",
     "@typescript-eslint/parser": "^5.44.0",
     "eslint": "^8.30.0",
