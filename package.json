@@ -2,12 +2,22 @@
   "name": "@suzuki3jp/utils",
   "version": "1.0.0",
   "description": "A utility for me",
-  "main": "index.js",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
   "scripts": {
-    "build": "npx tsc"
+    "build": "npx tsc",
+    "pub": "npm publish --access=public"
   },
-  "author": "suzuki3jp",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/suzuki3jp/utils"
+  },
+  "author": "suzuki3jp(https://github.com/suzuki3jp)",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/suzuki3jp/utils/issues"
+  },
+  "homepage": "https://github.com/suzuki3jp/utils#readme",
   "devDependencies": {
     "@types/node": "^18.11.18",
     "@typescript-eslint/eslint-plugin": "^5.44.0",
@@ -22,5 +32,10 @@
   },
   "dependencies": {
     "axios": "^1.2.1"
-  }
+  },
+  "files": [
+    "lib",
+    "LICENSE",
+    "README.md"
+  ]
 }
