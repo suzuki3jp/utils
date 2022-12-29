@@ -9,3 +9,5 @@ export { Logger } from './logger/Logger';
 export type { LoggerOptions } from './logger/Logger';
 
 export { ObjectUtils } from './object/ObjectUtils';
+
+export { EnvParser } from './paser/Paser';
