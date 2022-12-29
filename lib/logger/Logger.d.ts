@@ -1,6 +1,7 @@
 export declare class Logger {
     logFilePath: string | null;
     logFileName: string | null;
+    isSaveLogToCsv: boolean;
     constructor(options: LoggerOptions);
     system(message: string): void;
     info(message: string): void;
@@ -10,7 +11,7 @@ export declare class Logger {
      * @param data 書き込むデータ
      * @returns 最新のログファイルのデータ
      */
-    writeToCsv(data: string): string;
+    writeToCsv(data: string): string | undefined;
 }
 export interface LoggerOptions {
     /**

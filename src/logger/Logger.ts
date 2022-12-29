@@ -5,17 +5,20 @@ import { CustomError, JSTDate } from '../index';
 export class Logger {
     public logFilePath: string | null;
     public logFileName: string | null;
+    public isSaveLogToCsv: boolean;
 
     constructor(options: LoggerOptions) {
         if (options.isSaveLogToCsv) {
             // ログをファイルに保存する場合
             if (!options.logFilePath) throw new CustomError('LogOptionsError', LoggerErrorMessage.logFilePathUndefined);
 
+            this.isSaveLogToCsv = true;
             this.logFilePath = options.logFilePath;
 
             const logFilePaths = this.logFilePath.split('/');
             this.logFileName = logFilePaths[logFilePaths.length - 1];
         } else {
+            this.isSaveLogToCsv = false;
             this.logFilePath = null;
             this.logFileName = null;
         }
@@ -47,12 +50,14 @@ export class Logger {
      * @param data 書き込むデータ
      * @returns 最新のログファイルのデータ
      */
-    writeToCsv(data: string): string {
-        if (!this.logFilePath) throw new CustomError('LogWriteError', LoggerErrorMessage.canNotWriteToCsv);
-        const oldData = readFileSync(this.logFilePath, { encoding: 'utf-8' });
-        const newData = `${oldData}${data}\n`;
-        writeFileSync(this.logFilePath, newData, { encoding: 'utf-8' });
-        return newData;
+    writeToCsv(data: string): string | undefined {
+        if (this.isSaveLogToCsv) {
+            if (!this.logFilePath) throw new CustomError('LogWriteError', LoggerErrorMessage.canNotWriteToCsv);
+            const oldData = readFileSync(this.logFilePath, { encoding: 'utf-8' });
+            const newData = `${oldData}${data}\n`;
+            writeFileSync(this.logFilePath, newData, { encoding: 'utf-8' });
+            return newData;
+        } else return;
     }
 }
 
