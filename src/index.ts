@@ -11,3 +11,5 @@ export type { LoggerOptions } from './logger/Logger';
 export { ObjectUtils } from './object/ObjectUtils';
 
 export { EnvParser } from './paser/Paser';
+
+export { ArrayUtils } from './array/ArrayUtils';
