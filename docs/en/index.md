@@ -1,4 +1,5 @@
 # @suzuki3jp/utils documentation in English.
+**The docs is incomplete.**
 ## class
 - **[ArrayUtils](./class/ArrayUtils.md)**
 - **[CustomError](./class/CustomError.md)**
