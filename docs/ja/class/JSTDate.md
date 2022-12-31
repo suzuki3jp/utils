@@ -11,6 +11,8 @@ console.log(jstDateString); // expected output: "yyyy/mm/dd hh:mm:ss"
 ```
 ## methods
 - **getDate(): Date**
+    - static
     - 日本時間のDateクラスを返す
 - **getDateString(): string**
+    - static
     - フォーマットされた日本時間を返す
