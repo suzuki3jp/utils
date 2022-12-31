@@ -15,19 +15,19 @@ logger.system("example system log message.")
 ## methods
 - **system(message: string): void**
     - consoleにログを出力
-    - LoggerOptions.isSaveToCsvがtrueだった場合はCSVにもログを保存
+    - `LoggerOptions.isSaveToCsv`がtrueだった場合はCSVにもログを保存
     - ログの内容 -> `[${JSTDate.getDateString()}] SYSTEM: ${message}`
         - "[yyyy/mm/dd hh:mm:ss] SYSTEM: example"
         - [JSTDate](./JSTDate.md)
 - **info(message: string): void**
     - consoleにログを出力
-    - LoggerOptions.isSaveToCsvがtrueだった場合はCSVにもログを保存
+    - `LoggerOptions.isSaveToCsv`がtrueだった場合はCSVにもログを保存
     - ログの内容 -> `[${JSTDate.getDateString()}] INFO: ${message}`
         - "[yyyy/mm/dd hh:mm:ss] INFO: example"
         - [JSTDate](./JSTDate.md)
 - **error(message: string): void**
     - consoleにログを出力
-    - LoggerOptions.isSaveToCsvがtrueだった場合はCSVにもログを保存
+    - `LoggerOptions.isSaveToCsv`がtrueだった場合はCSVにもログを保存
     - ログの内容 -> `[${JSTDate.getDateString()}] ERROR: ${message}`
         - "[yyyy/mm/dd hh:mm:ss] ERROR: example"
         - [JSTDate](./JSTDate.md)
@@ -36,4 +36,4 @@ logger.system("example system log message.")
         - CSVに書き込むデータ
     - @returns string | undefined
         - 最新のログファイルのデータ
-        - LoggerOptions.isSaveToCsvがfalseの場合undefined
+        - `LoggerOptions.isSaveToCsv`がfalseの場合undefined
