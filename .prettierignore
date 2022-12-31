@@ -8,3 +8,5 @@ package.json
 package-lock.json
 README.md
 tsconfig.json
+.vscode/
+docs/
