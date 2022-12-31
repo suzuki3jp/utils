@@ -10,7 +10,7 @@ const jstDateString = JSTDate.getDateString();
 console.log(jstDateString); // expected output: "yyyy/mm/dd hh:mm:ss"
 ```
 ## methods
-- getDate(): Date
+- **getDate(): Date**
     - 日本時間のDateクラスを返す
-- getDateString(): string
+- **getDateString(): string**
     - フォーマットされた日本時間を返す

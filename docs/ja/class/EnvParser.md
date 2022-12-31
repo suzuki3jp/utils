@@ -14,6 +14,6 @@ console.log(envData)// expected output: 'foo = "bar"\nbar = "foo"'
 writeFileSync(".env", envData, { encoding: "utf-8" });
 ```
 ## methods
-- parseToEnv(data: object): string
+- **parseToEnv(data: object): string**
     - static
     - オブジェクトから.envの形式にパースする。
