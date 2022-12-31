@@ -3,7 +3,6 @@
 ```js
 const { EnvParser } = require("@suzuki3jp/utils");
 const { writeFileSync } = require("fs");
-const path = require("path");
 
 const envObj = {
     foo: "bar",
@@ -12,6 +11,7 @@ const envObj = {
 
 const envData = EnvParser.parseToEnv(envObj);
 console.log(envData)// expected output: 'foo = "bar"\nbar = "foo"'
+writeFileSync(".env", envData, { encoding: "utf-8" });
 ```
 ## methods
 - parseToEnv(data: object): string
