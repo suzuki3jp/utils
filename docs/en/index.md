@@ -1,6 +1,5 @@
 # @suzuki3jp/utils documentation in English.
-**This document was written using a translator. Therefore, the text may be incorrect.**  
-**The docs is incomplete.**
+**This document was written using a translator. Therefore, the text may be incorrect.**
 ## class
 - **[ArrayUtils](./class/ArrayUtils.md)**
 - **[CustomError](./class/CustomError.md)**
