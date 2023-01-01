@@ -15,5 +15,8 @@ const utils = require("@suzuki3jp/utils");
 - **[English](https://github.com/suzuki3jp/utils/blob/main/docs/en/index.md)**
 - **[Japanese](https://github.com/suzuki3jp/utils/blob/main/docs/ja/index.md)**
 
+## Help
+- [Support Server](https://discord.gg/P6JhU9E2AP)
+
 ## LICENCE
 [MIT](./LICENSE)
