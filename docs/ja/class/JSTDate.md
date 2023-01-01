@@ -16,3 +16,4 @@ console.log(jstDateString); // expected output: "yyyy/mm/dd hh:mm:ss"
 - **getDateString(): string**
     - static
     - フォーマットされた日本時間を返す
+    - ["yyyy/mm/dd hh:mm:ss"](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleString)
