@@ -1,6 +1,6 @@
 import { ObjectUtils } from '../index';
 
-export class EnvParser {
+export class Env {
     static parseToEnv(data: object): string {
         let envData: string;
         ObjectUtils.forEach(data, (key, value) => {

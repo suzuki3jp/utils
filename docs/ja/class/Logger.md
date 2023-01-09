@@ -13,19 +13,22 @@ logger.system("example system log message.")
 ```
 ## constructor(options: [LoggerOptions](../type/LoggerOptions.md))
 ## methods
-- **system(message: string): void**
+- **system(...messages: string[]): void**
+    - messagesは空白なしで連結されログメッセージとなります
     - consoleにログを出力
     - `LoggerOptions.isSaveToCsv`がtrueだった場合はCSVにもログを保存
     - ログの内容 -> `[${JSTDate.getDateString()}] SYSTEM: ${message}`
         - "[yyyy/mm/dd hh:mm:ss] SYSTEM: example"
         - [JSTDate](./JSTDate.md)
-- **info(message: string): void**
+- **info(...messages: string[]): void**
+    - messagesは空白なしで連結されログメッセージとなります
     - consoleにログを出力
     - `LoggerOptions.isSaveToCsv`がtrueだった場合はCSVにもログを保存
     - ログの内容 -> `[${JSTDate.getDateString()}] INFO: ${message}`
         - "[yyyy/mm/dd hh:mm:ss] INFO: example"
         - [JSTDate](./JSTDate.md)
-- **error(message: string): void**
+- **error(...messages: string[]): void**
+    - messagesは空白なしで連結されログメッセージとなります
     - consoleにログを出力
     - `LoggerOptions.isSaveToCsv`がtrueだった場合はCSVにもログを保存
     - ログの内容 -> `[${JSTDate.getDateString()}] ERROR: ${message}`

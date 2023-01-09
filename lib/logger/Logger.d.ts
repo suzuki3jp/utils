@@ -3,9 +3,9 @@ export declare class Logger {
     logFileName: string | null;
     isSaveLogToCsv: boolean;
     constructor(options: LoggerOptions);
-    system(message: string): void;
-    info(message: string): void;
-    error(message: string): void;
+    system(...messages: string[]): void;
+    info(...messages: string[]): void;
+    error(...messages: string[]): void;
     /**
      * ログファイルに書き込む
      * @param data 書き込むデータ

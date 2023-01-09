@@ -13,19 +13,22 @@ logger.system("example system log message.")
 ```
 ## constructor(options: [LoggerOptions](../type/LoggerOptions.md))
 ## methods
-- **system(message: string): void**
+- **system(...messages: string[]): void**
+    - messages are concatenated without spaces and become log messages.
     - Output logs to console.
     - If `LoggerOptions.isSaveToCsv` is true, logs are saved to CSV.
     - Log content. -> `[${JSTDate.getDateString()}] SYSTEM: ${message}`
         - "[yyyy/mm/dd hh:mm:ss] SYSTEM: example"
         - [JSTDate](./JSTDate.md)
-- **info(message: string): void**
+- **info(...messages: string[]): void**
+    - messages are concatenated without spaces and become log messages.
     - Output logs to console.
     - If `LoggerOptions.isSaveToCsv` is true, logs are saved to CSV.
     - Log content. -> `[${JSTDate.getDateString()}] INFO: ${message}`
         - "[yyyy/mm/dd hh:mm:ss] INFO: example"
         - [JSTDate](./JSTDate.md)
-- **error(message: string): void**
+- **error(...messages: string[]): void**
+    - messages are concatenated without spaces and become log messages.
     - Output logs to console.
     - If `LoggerOptions.isSaveToCsv` is true, logs are saved to CSV.
     - Log content. -> `[${JSTDate.getDateString()}] ERROR: ${message}`

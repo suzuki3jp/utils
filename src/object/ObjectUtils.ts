@@ -4,4 +4,13 @@ export class ObjectUtils {
             callbackFn(key, value);
         }
     }
+
+    static at(object: object, index: number): { index: number; key: any; value: any } {
+        const array = Object.entries(object);
+        return { index, key: array[index][0], value: array[index][1] };
+    }
+
+    static KVlength(object: object): number {
+        return Object.entries(object).length;
+    }
 }

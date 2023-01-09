@@ -1,6 +1,6 @@
 import { writeFileSync, readFileSync } from 'fs';
 
-import { CustomError, JSTDate } from '../index';
+import { CustomError, JST } from '../index';
 
 export class Logger {
     public logFilePath: string | null;
@@ -10,7 +10,7 @@ export class Logger {
     constructor(options: LoggerOptions) {
         if (options.isSaveLogToCsv) {
             // ログをファイルに保存する場合
-            if (!options.logFilePath) throw new CustomError('LogOptionsError', LoggerErrorMessage.logFilePathUndefined);
+            if (!options.logFilePath) throw new CustomError('LogOptionsError', ErrorCodes.logFilePathUndefined);
 
             this.isSaveLogToCsv = true;
             this.logFilePath = options.logFilePath;
@@ -24,22 +24,25 @@ export class Logger {
         }
     }
 
-    system(message: string) {
-        const now = JSTDate.getDateString();
+    system(...messages: string[]) {
+        const message = messages.join('');
+        const now = JST.getDateString();
         const logMessage = `[${now}] SYSTEM: ${message}`;
         console.log(logMessage);
         this.writeToCsv(logMessage);
     }
 
-    info(message: string) {
-        const now = JSTDate.getDateString();
+    info(...messages: string[]) {
+        const message = messages.join('');
+        const now = JST.getDateString();
         const logMessage = `[${now}] INFO: ${message}`;
         console.info(logMessage);
         this.writeToCsv(logMessage);
     }
 
-    error(message: string) {
-        const now = JSTDate.getDateString();
+    error(...messages: string[]) {
+        const message = messages.join('');
+        const now = JST.getDateString();
         const logMessage = `[${now}] ERROR: ${message}`;
         console.error(logMessage);
         this.writeToCsv(logMessage);
@@ -52,9 +55,9 @@ export class Logger {
      */
     writeToCsv(data: string): string | undefined {
         if (this.isSaveLogToCsv) {
-            if (!this.logFilePath) throw new CustomError('LogWriteError', LoggerErrorMessage.canNotWriteToCsv);
+            if (!this.logFilePath) throw new CustomError('LogWriteError', ErrorCodes.canNotWriteToCsv);
             const oldData = readFileSync(this.logFilePath, { encoding: 'utf-8' });
-            const newData = `${oldData}${data}\n`;
+            const newData = `${oldData}${data}`;
             writeFileSync(this.logFilePath, newData, { encoding: 'utf-8' });
             return newData;
         } else return;
@@ -75,7 +78,7 @@ export interface LoggerOptions {
     logFilePath?: string;
 }
 
-const LoggerErrorMessage = {
+const ErrorCodes = {
     logFilePathUndefined: 'If LoggerOptions.isSaveLogToCsv is true, LoggerOptions.logFilePath is required',
     canNotWriteToCsv: 'Can not write to csv. LoggerOptions.logFilePath is reqeuired.',
 };
