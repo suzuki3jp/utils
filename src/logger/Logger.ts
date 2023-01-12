@@ -29,7 +29,7 @@ export class Logger {
         const now = JST.getDateString();
         const logMessage = `[${now}] SYSTEM: ${message}`;
         console.log(logMessage);
-        this.writeToCsv(logMessage);
+        this.writeToCsv(logMessage + '\n');
     }
 
     info(...messages: string[]) {
@@ -37,7 +37,7 @@ export class Logger {
         const now = JST.getDateString();
         const logMessage = `[${now}] INFO: ${message}`;
         console.info(logMessage);
-        this.writeToCsv(logMessage);
+        this.writeToCsv(logMessage + '\n');
     }
 
     error(...messages: string[]) {
@@ -45,7 +45,7 @@ export class Logger {
         const now = JST.getDateString();
         const logMessage = `[${now}] ERROR: ${message}`;
         console.error(logMessage);
-        this.writeToCsv(logMessage);
+        this.writeToCsv(logMessage + '\n');
     }
 
     /**
