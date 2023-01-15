@@ -1,87 +1,112 @@
 import axios from 'axios';
 import { AxiosRequestConfig, AxiosError } from 'axios';
 
-import { CustomError } from '../index';
-
 /**
  * The class that is class for  http requests using axios.
  */
-export class Request {
-    public baseUrl: string | null;
+export class RequestClient {
+    private baseUrl: string | null;
 
-    constructor(baseUrl?: string) {
-        this.baseUrl = baseUrl ?? null;
+    constructor(options?: RequestClientOptions) {
+        if (options) {
+            this.baseUrl = options.baseUrl ?? null;
+        } else {
+            this.baseUrl = null;
+        }
     }
 
     /**
      * GET method of http request.
-     * @param endPoint baseUrlが未設定の場合そのまま使用
      */
-    async get(endPoint: string, config?: AxiosRequestConfig): Promise<RequestGetResult> {
-        const url = this.baseUrl === null ? endPoint : this.baseUrl + endPoint;
+    async get(options: RequestGetOptions): Promise<RequestResponse> {
+        const url = this.baseUrl ? this.baseUrl + options.url : options.url;
+        const config = options.config;
+
         try {
             const res = await axios.get(url, config);
-            const result: RequestGetResult = {
+            return {
                 status: res.status,
                 data: res.data,
             };
-            return result;
         } catch (error) {
-            if (error instanceof AxiosError) {
-                if (error.response) {
-                    const { status, data } = error.response;
-                    const result: RequestGetResult = {
-                        status,
-                        data,
-                    };
-                    return result;
-                } else {
-                    throw new CustomError('RequestError', 'Request failed.');
-                }
+            if (error instanceof AxiosError && error.response) {
+                const { status, data } = error.response;
+                return { status, data };
             } else {
-                throw new CustomError('RequestError', 'Request failed.');
+                throw new Error('Request failed.');
             }
         }
     }
 
     /**
      * POST method of http request.
-     * @param endPoint baseUrlが未設定の場合そのまま使用
      */
-    async post(endPoint: string, body?: URLSearchParams): Promise<RequestPostResult> {
-        const url = this.baseUrl === null ? endPoint : this.baseUrl + endPoint;
+    async post(options: RequestPostOptions): Promise<RequestResponse> {
+        const url = this.baseUrl ? this.baseUrl + options.url : options.url;
+        const body = options.body;
+        const config = options.config;
+
         try {
-            const res = await axios.post(url, body);
-            const result: RequestGetResult = {
+            const res = await axios.post(url, body, config);
+            return {
                 status: res.status,
                 data: res.data,
             };
-            return result;
         } catch (error) {
-            if (error instanceof AxiosError) {
-                if (error.response) {
-                    const { status, data } = error.response;
-                    const result: RequestGetResult = {
-                        status,
-                        data,
-                    };
-                    return result;
-                } else {
-                    throw new CustomError('RequestError', 'Request failed.');
-                }
+            if (error instanceof AxiosError && error.response) {
+                const { status, data } = error.response;
+                return { status, data };
             } else {
-                throw new CustomError('RequestError', 'Request failed.');
+                throw new Error('Request failed.');
             }
         }
     }
 }
 
-export interface RequestGetResult {
-    status: number;
-    data: object;
+export interface RequestClientOptions {
+    /**
+     * Request base url
+     */
+    baseUrl?: string;
 }
 
-export interface RequestPostResult {
+export interface RequestGetOptions {
+    /**
+     * If RequestClientOptions#baseUrl is undefined, the url is used as is.
+     */
+    url: string;
+
+    /**
+     * Request config.
+     */
+    config?: AxiosRequestConfig;
+}
+
+export interface RequestPostOptions {
+    /**
+     * If RequestClientOptions#baseUrl is undefined, the url is used as is.
+     */
+    url: string;
+
+    /**
+     * Request body.
+     */
+    body?: URLSearchParams;
+
+    /**
+     * Request config.
+     */
+    config?: AxiosRequestConfig;
+}
+
+export interface RequestResponse {
+    /**
+     * Response status code.
+     */
     status: number;
-    data: object;
+
+    /**
+     * Response data.
+     */
+    data: any;
 }

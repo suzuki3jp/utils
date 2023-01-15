@@ -5,6 +5,5 @@ export { JST, UTC } from './date/Date';
 export { Logger } from './logger/Logger';
 export type { LoggerOptions } from './logger/Logger';
 export { ObjectUtils } from './object/ObjectUtils';
-export { Request } from './http/Request';
-export type { RequestGetResult, RequestPostResult } from './http/Request';
+export { RequestClient, RequestClientOptions, RequestGetOptions, RequestPostOptions, RequestResponse, } from './http/Request';
 export { StringUtils } from './string/StringUtils';
