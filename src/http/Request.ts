@@ -61,6 +61,44 @@ export class RequestClient {
             }
         }
     }
+
+    /**
+     * PUT method of http request.
+     */
+    async put(options: RequestPutOptions): Promise<RequestResponse> {
+        const url = this.baseUrl ? this.baseUrl + options.url : options.url;
+        const body = options.body;
+        const config = options.config;
+
+        try {
+            const res = await axios.put(url, body, config);
+            return { status: res.status, data: res.data };
+        } catch (error) {
+            if (error instanceof AxiosError && error.response) {
+                const { status, data } = error.response;
+                return { status, data };
+            } else {
+                throw new Error('Request failed.');
+            }
+        }
+    }
+
+    async delete(options: RequestDeleteOptions) {
+        const url = this.baseUrl ? this.baseUrl + options.url : options.url;
+        const config = options.config;
+
+        try {
+            const res = await axios.delete(url, config);
+            return { status: res.status, data: res.data };
+        } catch (error) {
+            if (error instanceof AxiosError && error.response) {
+                const { status, data } = error.response;
+                return { status, data };
+            } else {
+                throw new Error('Request failed.');
+            }
+        }
+    }
 }
 
 export interface RequestClientOptions {
@@ -91,7 +129,36 @@ export interface RequestPostOptions {
     /**
      * Request body.
      */
-    body?: URLSearchParams;
+    body?: Object;
+
+    /**
+     * Request config.
+     */
+    config?: AxiosRequestConfig;
+}
+
+export interface RequestPutOptions {
+    /**
+     * If RequestClientOptions#baseUrl is undefined, the url is used as is.
+     */
+    url: string;
+
+    /**
+     * Request body.
+     */
+    body?: Object;
+
+    /**
+     * Request config.
+     */
+    config?: AxiosRequestConfig;
+}
+
+export interface RequestDeleteOptions {
+    /**
+     * If RequestClientOptions#baseUrl is undefined, the url is used as is.
+     */
+    url: string;
 
     /**
      * Request config.

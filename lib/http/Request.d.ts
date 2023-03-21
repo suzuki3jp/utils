@@ -13,6 +13,14 @@ export declare class RequestClient {
      * POST method of http request.
      */
     post(options: RequestPostOptions): Promise<RequestResponse>;
+    /**
+     * PUT method of http request.
+     */
+    put(options: RequestPutOptions): Promise<RequestResponse>;
+    delete(options: RequestDeleteOptions): Promise<{
+        status: number;
+        data: any;
+    }>;
 }
 export interface RequestClientOptions {
     /**
@@ -38,7 +46,31 @@ export interface RequestPostOptions {
     /**
      * Request body.
      */
-    body?: URLSearchParams;
+    body?: Object;
+    /**
+     * Request config.
+     */
+    config?: AxiosRequestConfig;
+}
+export interface RequestPutOptions {
+    /**
+     * If RequestClientOptions#baseUrl is undefined, the url is used as is.
+     */
+    url: string;
+    /**
+     * Request body.
+     */
+    body?: Object;
+    /**
+     * Request config.
+     */
+    config?: AxiosRequestConfig;
+}
+export interface RequestDeleteOptions {
+    /**
+     * If RequestClientOptions#baseUrl is undefined, the url is used as is.
+     */
+    url: string;
     /**
      * Request config.
      */
