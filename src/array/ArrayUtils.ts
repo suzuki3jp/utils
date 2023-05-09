@@ -1,5 +1,5 @@
 export class ArrayUtils {
-    static random(array: any[]): any {
+    static random<T>(array: T[]): T {
         const length = array.length;
         const element = array[Math.floor(Math.random() * length)];
         return element;

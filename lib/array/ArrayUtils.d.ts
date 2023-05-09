@@ -1,3 +1,3 @@
 export declare class ArrayUtils {
-    static random(array: any[]): any;
+    static random<T>(array: T[]): T;
 }
