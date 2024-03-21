@@ -1,0 +1,35 @@
+name: npm publish
+
+on:
+  # v*.*.*のタグが付与されたときに実行
+  push:
+    branches-ignore:
+      - '**'
+    tags:
+      - 'v*'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          registry-url: 'https://registry.npmjs.org'
+          scope: '@suzuki3jp'
+          always-auth: true
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build client
+        run: npm build
+
+      - name: Publish package
+        run: npm run pub
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

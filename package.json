@@ -5,8 +5,10 @@
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "scripts": {
-    "build": "npx tsc",
-    "pub": "npm publish --access=public"
+    "build": "tsc",
+    "pub": "npm publish --access=public",
+    "lint": "eslint src",
+    "check": "tsc --noEmit"
   },
   "repository": {
     "type": "git",
