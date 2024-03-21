@@ -19,4 +19,6 @@ export {
     RequestResponse,
 } from './http/Request';
 
+export * from "./result/Result"
+
 export { StringUtils } from './string/StringUtils';
